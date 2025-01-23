@@ -2,9 +2,11 @@ using BepInEx;
 using RoR2;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
+using R2API.Utils;
 
 namespace GildedChunkSpamFix
 {
+    [NetworkCompatibility(CompatibilityLevel.NoNeedForSync, VersionStrictness.DifferentModVersionsAreOk)]
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     public class Plugin : BaseUnityPlugin
     {
