@@ -1,9 +1,7 @@
-using UnityEngine.AddressableAssets;
 using BepInEx;
 using RoR2;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using System;
 
 namespace GildedChunkSpamFix
 {
@@ -29,7 +27,7 @@ namespace GildedChunkSpamFix
             ILCursor c = new(il);
             // replace "this.isPlayer" check at 241 (or 112 in IL) with "!DamageReport.victimBody.isPlayerControlled"
             // that way both player and AI attackers will have a cooldown for spawning gilded chunks, not just players
-            // and gold chunk spam will only happen on player victims, but im 99.999% sure that'll never be a problem in normal gameplay
+            // gold chunk spam can still happen on player victims, but im 99.999% sure that'll never be a problem in normal gameplay
             if (c.TryGotoNext(MoveType.Before,
                     x => x.MatchLdloc(3),
                     x => x.MatchLdcR4(out _),
